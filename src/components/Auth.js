@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { AUTH_ENDPOINT, CLIENT_ID, REDIRECT_URI, RESPONSE_TYPE, TOKEN } from "../utils/GlobalVariable";
+import {
+  AUTH_ENDPOINT,
+  CLIENT_ID,
+  REDIRECT_URI,
+  RESPONSE_TYPE,
+  TOKEN,
+} from "../utils/GlobalVariable";
 import UserDashboard from "./UserDashboard";
 
 function Auth() {
@@ -7,7 +13,7 @@ function Auth() {
 
   useEffect(() => {
     const hash = window.location.hash;
-    const token = window.localStorage.getItem("token");
+    let token = window.localStorage.getItem("token");
 
     if (!token && hash) {
       token = hash
