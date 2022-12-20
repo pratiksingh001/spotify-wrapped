@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import axios from "axios";
+import UserDashboard from "./components/UserDashboard";
 
 function App() {
   // Yathaarth's User ID
-  // const CLIENT_ID = "6d1d7666c23e44dfa4e14c620587fd2d";
+  const CLIENT_ID = "6d1d7666c23e44dfa4e14c620587fd2d";
   const REDIRECT_URI = "http://localhost:3000/";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
 
   const [token, setToken] = useState("");
-
-  const handleLogout = () => {
-    setToken("");
-    window.localStorage.removeItem("token", "");
-  };
+  const [fetchedData, setFetchedData] = useState([]);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -42,7 +40,9 @@ function App() {
           Login krlo bhai pehle ek baar
         </a>
       ) : (
-        <button onClick={handleLogout}>Logout</button>
+        <div>
+          <UserDashboard token={token} />
+        </div>
       )}
     </div>
   );
